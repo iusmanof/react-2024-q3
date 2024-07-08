@@ -57,11 +57,7 @@ class SearchApp extends Component<SearchAppState> {
     return (
       <div>
         <div>
-          <input
-            type="text"
-            value={searchInput}
-            onChange={(e) => this.setState({ searchInput: e.target.value })}
-          />
+          <input type="text" value={searchInput} onChange={(e) => this.setState({ searchInput: e.target.value })} />
           <button onClick={this.handleSearch}>Search</button>
         </div>
         <div>
