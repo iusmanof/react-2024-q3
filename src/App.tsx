@@ -1,16 +1,21 @@
-import './App.css';
-import SearchInput from './components/SearchPanel/SearchInput';
-import SearchResult from './components/SearchResult/SearchResult';
-
 import React, { Component } from 'react';
+import ErrorBoundary from './components/ErrorBoundary';
+import SearchApp from './components/SearchApp';
 
-export default class App extends Component {
+class App extends Component {
+  throwError = () => {
+    throw new Error('Manual error thrown for testing purposes');
+  };
+
   render() {
     return (
-      <>
-        <SearchInput />
-        <SearchResult />
-      </>
+      <ErrorBoundary>
+        <div>
+          <SearchApp />
+        </div>
+      </ErrorBoundary>
     );
   }
 }
+
+export default App;

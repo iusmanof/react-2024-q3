@@ -13,6 +13,5 @@ module.exports = {
   rules: {
     "react-compiler/react-compiler": "error",
     "@typescript-eslint/no-explicit-any": "error",
-    "no-console": "error",
   },
 }
