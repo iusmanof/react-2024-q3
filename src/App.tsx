@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ErrorBoundary from './components/ErrorBoundary';
-import SearchApp from './components/SearchApp';
+import SearchPokemon from './components/SearchPokemon';
 
 class App extends Component {
   throwError = () => {
@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <ErrorBoundary>
         <div>
-          <SearchApp />
+          <SearchPokemon />
         </div>
       </ErrorBoundary>
     );

@@ -10,7 +10,7 @@ type SearchAppState = {
   searchResults: Pokemon[];
 };
 
-class SearchApp extends Component<SearchAppState> {
+class SearchAppClassComponent extends Component<SearchAppState> {
   state: SearchAppState = {
     searchInput: '',
     searchResults: [],
@@ -77,4 +77,4 @@ class SearchApp extends Component<SearchAppState> {
   }
 }
 
-export default SearchApp;
+export default SearchAppClassComponent;
