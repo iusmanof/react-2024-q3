@@ -1,71 +1,61 @@
 import React, { useState, useEffect } from 'react';
-import { ResultSearchPokemon } from '../ResultSearchPokemon/ResultSearchPokemon';
 import { SearchButton, SearchContainer, SearchInput } from '../../styles/SearchStyle';
+import { Pokemon, ResultSearchPokemon } from '../ResultSearchPokemon/ResultSearchPokemon';
 
-type Pokemon = {
-  name: string;
-  description: string;
-};
-
-type SearchAppState = {
-  searchInput: string;
-  searchResults: Pokemon[];
-};
-
-const SearchPokemon: React.FC<SearchAppState> = () => {
-  const [searchInput, setSearchInput] = useState<string>('');
-  const [searchResults, setSearchResults] = useState<Pokemon[]>([]);
+const SearchPokemon: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const savedSearchTerm = localStorage.getItem('searchTerm');
-    if (savedSearchTerm) {
-      setSearchInput(savedSearchTerm);
-      fetchPokemon(savedSearchTerm);
-    }
+    fetch('https://pokeapi.co/api/v2/pokemon/')
+      .then((res) => res.json())
+      .then((data) => {
+        setPokemonList(data.results);
+      });
   }, []);
 
-  const fetchPokemon = async (searchTerm: string) => {
+  const handleSearch = async () => {
     try {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${searchTerm}`);
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${searchTerm.toLowerCase()}`);
       if (!response.ok) {
-        throw new Error('Pokemon not found');
+        throw new Error(`Failed to fetch details for ${searchTerm}`);
       }
-
       const data = await response.json();
-      const pokemon: Pokemon = {
-        name: data.name,
-        description: data.sprites.front_default,
-      };
 
-      setSearchResults([pokemon]);
+      setPokemonList([data]);
+      setError(null);
     } catch (error) {
-      console.error('Error fetching Pokemon:', error);
-      setSearchResults([]);
+      if (error instanceof Error && error.message) {
+        setError('Error searching for Pokemon: ' + error.message);
+      } else {
+        setError('An error occurred while searching for Pokemon.');
+      }
     }
   };
 
-  const handleSearch = () => {
-    const trimmedSearchInput = searchInput.trim();
-    localStorage.setItem('searchTerm', trimmedSearchInput);
-    fetchPokemon(trimmedSearchInput);
+  const handleReset = () => {
+    fetch('https://pokeapi.co/api/v2/pokemon/')
+      .then((res) => res.json())
+      .then((data) => {
+        setPokemonList(data.results);
+        setError(null);
+      });
   };
 
   return (
     <div>
-      <div>
-        <SearchContainer>
-          <SearchInput
-            type="text"
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-            placeholder="Example: ditto"
-          />
-          <SearchButton onClick={handleSearch}>Search</SearchButton>
-        </SearchContainer>
-      </div>
-      <div>
-        <ResultSearchPokemon searchResults={searchResults} />
-      </div>
+      <SearchContainer>
+        <SearchInput
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Example: ditto"
+        />
+        <SearchButton onClick={handleSearch}>Search</SearchButton>
+        <button onClick={handleReset}>Reset</button>
+      </SearchContainer>
+      <ResultSearchPokemon pokemonList={pokemonList} error={error} />
     </div>
   );
 };
