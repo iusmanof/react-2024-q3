@@ -3,8 +3,11 @@ import React, { Component } from 'react';
 type ErrorBoundaryState = {
   hasError: boolean;
 };
+interface ErrorBoundaryProps {
+  children: React.ReactNode;
+}
 
-class ErrorBoundary extends Component<ErrorBoundaryState> {
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   state: ErrorBoundaryState = {
     hasError: false,
   };
@@ -17,7 +20,7 @@ class ErrorBoundary extends Component<ErrorBoundaryState> {
     console.error('Error caught by ErrorBoundary:', error, errorInfo);
   }
 
-  render() {
+  render(): React.ReactNode {
     if (this.state.hasError) {
       return <p>Something went wrong. Please try again.</p>;
     }

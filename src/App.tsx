@@ -1,21 +1,18 @@
-import React, { Component } from 'react';
-import ErrorBoundary from './components/ErrorBoundary';
-import SearchPokemon from './components/SearchPokemon';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { SearchPage } from './components/SearchPage/SearchPage';
+import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 
-class App extends Component {
-  throwError = () => {
-    throw new Error('Manual error thrown for testing purposes');
-  };
-
-  render() {
-    return (
-      <ErrorBoundary>
-        <div>
-          <SearchPokemon />
-        </div>
-      </ErrorBoundary>
-    );
-  }
-}
+const App: React.FC = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<SearchPage />} />
+        <Route path="/not_found" element={<NotFoundPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </Router>
+  );
+};
 
 export default App;

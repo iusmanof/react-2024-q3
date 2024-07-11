@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ResultSearchPokemon } from '../ResultSearchPokemon/ResultSearchPokemon';
 
 type Pokemon = {
   name: string;
@@ -55,20 +56,10 @@ const SearchPokemon: React.FC<SearchAppState> = () => {
         <button onClick={handleSearch}>Search</button>
       </div>
       <div>
-        {searchResults.length > 0 ? (
-          searchResults.map((pokemon, index) => (
-            <div key={index}>
-              <h3>{pokemon.name}</h3>
-              <img src={pokemon.description} alt={pokemon.name} />
-            </div>
-          ))
-        ) : (
-          <p>No search results</p>
-        )}
+        <ResultSearchPokemon searchResults={searchResults} />
       </div>
     </div>
   );
 };
 
 export default SearchPokemon;
-
