@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ResultSearchPokemon } from '../ResultSearchPokemon/ResultSearchPokemon';
+import { SearchButton, SearchContainer, SearchInput } from '../../styles/SearchStyle';
 
 type Pokemon = {
   name: string;
@@ -52,8 +53,15 @@ const SearchPokemon: React.FC<SearchAppState> = () => {
   return (
     <div>
       <div>
-        <input type="text" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
-        <button onClick={handleSearch}>Search</button>
+        <SearchContainer>
+          <SearchInput
+            type="text"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            placeholder="Example: ditto"
+          />
+          <SearchButton onClick={handleSearch}>Search</SearchButton>
+        </SearchContainer>
       </div>
       <div>
         <ResultSearchPokemon searchResults={searchResults} />
