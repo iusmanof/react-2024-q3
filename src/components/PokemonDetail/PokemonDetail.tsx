@@ -1,13 +1,13 @@
-import { Header } from "../Header/Header";
+import { Header } from '../Header/Header';
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 export interface PokemonData {
-    name: string;
-    sprites: {
-      front_default: string;
-    };
+  name: string;
+  sprites: {
+    front_default: string;
+  };
 }
 
 export const PokemonDetail = () => {
