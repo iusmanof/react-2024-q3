@@ -6,7 +6,7 @@ export const Header = () => {
     <div>
       <HeaderUl>
         <HeaderLi>
-          <Link to={`/`}>Search Pokemon Page</Link>
+          <Link to={`/pokemon`}>Search Pokemon Page</Link>
         </HeaderLi>
         <HeaderLi>
           <Link to={`/not_found`}>Not found</Link>

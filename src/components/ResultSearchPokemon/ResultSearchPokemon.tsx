@@ -1,5 +1,6 @@
 import React from 'react';
 import { PokemonBlock, PokemonContainer } from '../../styles/ResultSearchPokemonStyle';
+import { Link } from 'react-router-dom';
 
 export type Pokemon = {
   name: string;
@@ -21,6 +22,8 @@ export const ResultSearchPokemon: React.FC<Props> = ({ paginatedPokemonList, err
       {paginatedPokemonList.map((pokemon: Pokemon) => (
         <PokemonBlock key={pokemon.name}>
           <p>Name: {pokemon.name}</p>
+          <p>URL: {pokemon.url.split("/")}</p>
+          <Link to={pokemon.url.split("/")[pokemon.url.split("/").length - 2]}>link</Link>
         </PokemonBlock>
       ))}
     </PokemonContainer>

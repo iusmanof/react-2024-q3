@@ -5,6 +5,7 @@ import Pagination, { PaginationProps } from '../Pagination/Pagination';
 
 interface PokemonData {
   name: string;
+  url: string;
   // Add any other properties you expect from the Pokemon API response
 }
 

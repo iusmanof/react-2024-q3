@@ -10,9 +10,11 @@ export const PokemonContainer = styled.div`
 `;
 
 export const PokemonBlock = styled.div`
-  width: 150px;
+  width: auto;
   margin: 10px;
+  padding: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border: 1px solid rebeccapurple;
