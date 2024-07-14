@@ -20,7 +20,6 @@ describe('SearchPokemon', () => {
 
     const searchInput = await findByPlaceholderText('Example: ditto');
     fireEvent.change(searchInput, { target: { value: 'ditto' } });
-    fireEvent.click(searchInput)
 
     const searchButton = await findByText('Search');
     fireEvent.click(searchButton);
