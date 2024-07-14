@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export type Pokemon = {
   name: string;
   url: string;
-  sprites?: {
+  sprites: {
     front_default: string;
     back_default: string;
   };
@@ -13,12 +13,12 @@ export type Pokemon = {
 
 interface Props {
   paginatedPokemonList: Pokemon[];
-  error: string | null; // New error prop
+  error: string | null;
 }
 
 export const ResultSearchPokemon: React.FC<Props> = ({ paginatedPokemonList, error }) => {
   if (error) {
-    return <div>{error}</div>; // Render the error message if error is not null
+    return <div>{error}</div>;
   }
 
   return (
@@ -31,7 +31,7 @@ export const ResultSearchPokemon: React.FC<Props> = ({ paginatedPokemonList, err
           </div>
         );
 
-        const withIMG = pokemon.sprites && (<img src={pokemon.sprites.front_default} />);
+        const withIMG = pokemon.sprites && <img src={pokemon.sprites.front_default} />;
 
         return (
           <PokemonBlock key={pokemon.name}>

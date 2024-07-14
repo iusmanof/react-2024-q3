@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Header } from '../Header/Header';
 
 const Container = styled.div`
   display: flex;
@@ -22,7 +21,6 @@ const Heading = styled.h1`
 const NotFoundPage = () => {
   return (
     <>
-      <Header />
       <Container>
         <Content>
           <Heading>404 - Page Not Found</Heading>

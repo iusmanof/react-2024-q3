@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { SearchPage } from './components/SearchPage/SearchPage';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import { PokemonDetail } from './components/PokemonDetail/PokemonDetail';
+import { Header } from './components/Header/Header';
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <Router basename="/pokemon">
+      <Header />
       <Routes>
         <Route path="/" element={<Navigate to="/pokemon" />} />
         <Route path="/pokemon" element={<SearchPage />} />

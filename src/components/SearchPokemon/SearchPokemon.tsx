@@ -6,7 +6,10 @@ import Pagination, { PaginationProps } from '../Pagination/Pagination';
 interface PokemonData {
   name: string;
   url: string;
-  // Add any other properties you expect from the Pokemon API response
+  sprites: {
+    front_default: string;
+    back_default: string;
+  };
 }
 
 const SearchPokemon: React.FC = () => {
@@ -15,8 +18,9 @@ const SearchPokemon: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [pagination, setPagination] = useState<PaginationProps>({
     currentPage: 1,
-    itemsPerPage: 10,
+    itemsPerPage: 4,
     totalItems: 100,
+    onPageChange: () => {},
   });
 
   useEffect(() => {
